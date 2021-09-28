@@ -1,0 +1,48 @@
+Create an account
+  Create account front-end page consisting of:
+      Username input
+      Password input
+      Confirm Password input
+      Create account button
+  Front-end authentication
+  Back-end authentication
+  Save account to database
+Login
+  Login front-end page consisting of:
+    Username input
+    Password input
+    Login button
+    Link to create an account
+  Front-end authentication
+  Back-end authentication
+Propose group date
+  Create group date event form page consisting of:
+    Input to search for events using date, location, genre, keyword
+      Pull event data based event inputs from Ticketmaster API
+    Input to search and pick users by username
+      Pull data from database to query for users
+    Form submit button which sends proposal to all users chosen
+Receive and respond to group date proposal
+    Front-end page to view all proposals for the user
+    Saving proposal to the list for each user in the proposal in the database
+
+List the items on the sprint backlog as it is defined at the conclusion of the planning meeting 
+One paragraph, no more than 300 words, explaining how and why the sprint backlog items were chosen by the team 
+
+The items on the sprint backlog were chosen because they are viewed as foundational to the application, 
+meaning they are the items upon which other functions and features will build upon later on. We chose 
+the items of ‘creating an account’ and ‘login’ because logically they are the first features a user encounters,
+moreover the information received from those tasks are critical data to be stored in the database. 
+The creation of the database is also important because it will store all the data in the application. 
+The items of ‘proposing group date’ and ‘receive and respond to group date proposal’ are chosen because they 
+seem to be the primary and key function of the application and thus are chosen to begin with, particularly since
+they are a large part of the front end implementation. 
+
+
+
+List of meeting participants:
+Andrew Mazariegos
+Ryan
+Yuhyun Chung
+Fei Ren
+Tianyu Wang
