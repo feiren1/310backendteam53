@@ -1,0 +1,39 @@
+Create an account
+Role : User
+  Type username
+  Type password twice
+Login
+  Role : User
+    Type username
+    Type password
+View account info/history
+  Role : User
+    Calendar for events
+      View whether event has been accepted or not
+    Proposal history
+      View all events that had been proposed and responses
+    Manage Account security, blacklist hosts
+Propose group date
+  Role: Host
+    Create Initial Group Date proposal
+      Option to add events via search
+      Option to add users  
+    Search Event 
+      Features: date, location, genre, keyword
+      Use Ticketmaster API or other external source
+    Pick Users to send to
+      Search users by username
+      Autocomplete
+Send Final Group Date proposal
+  Role : Host
+    System automatically generates most optimal group date event
+      Availability is strictly prioritized over enjoyment 
+    Host can send out a final proposal regardless of suggestion
+Receive and respond to group date proposal
+  Role: User
+    Displays all initial group date proposals
+    Set availability for events
+       If available, rate events options (1-5)
+Receive Finalized Group date proposal
+  Role : User
+    Accept or decline proposal
