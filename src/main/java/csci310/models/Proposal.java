@@ -10,7 +10,7 @@ import java.util.List;
 @Document(collection = "proposals")
 public class Proposal {
     @Id
-    private Long id;
+    Long id;
 
     @Indexed(unique = true)
     private Long host_id;

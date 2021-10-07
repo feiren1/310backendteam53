@@ -9,10 +9,11 @@ import org.junit.Test;
 
 public class UserTest {
 	
-//	@Test
-//	public void testgetId() {
-//		//TODO
-//	}
+	@Test
+	public void testgetId() {
+		User testUser0 = new User("username", "pwd123");
+		assertEquals(testUser0.getId(), testUser0.id);
+	}
 	
 	@Test
 	public void testgetUsername() {

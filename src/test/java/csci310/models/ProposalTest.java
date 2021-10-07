@@ -8,10 +8,11 @@ import org.junit.Test;
 
 public class ProposalTest {
 	
-//	@Test
-//	public void testgetId() {
-//		//TODO
-//	}
+	@Test
+	public void testgetId() {
+		Proposal testProposal0 = new Proposal((long) 1234);
+		assertEquals(testProposal0.getId(), testProposal0.id);
+	}
 	
 	@Test
 	public void testgetHostId() {

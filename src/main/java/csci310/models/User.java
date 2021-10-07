@@ -10,7 +10,7 @@ import java.util.List;
 @Document(collection = "users")
 public class User {
     @Id
-    private Long id;
+    Long id;
 
     @Indexed(unique = true)
     private String username;
