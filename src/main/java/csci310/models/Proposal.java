@@ -10,7 +10,7 @@ import java.util.List;
 @Document(collection = "proposals")
 public class Proposal {
     @Id
-    Long id;
+    Long proposalId;
 
     @Indexed(unique = true)
     private Long host_id;
@@ -32,7 +32,7 @@ public class Proposal {
     }
 
     //getters
-    public Long getId(){return id;}
+    public Long getId(){return proposalId;}
     public Long getHostId(){return host_id;}
     public int getFinalized(){return finalized;}
 
@@ -56,6 +56,6 @@ public class Proposal {
     public String toString() {
         return String.format(
                 "Proposal[id=%s, host id='%s']",
-                id, host_id);
+                proposalId, host_id);
     }
 }

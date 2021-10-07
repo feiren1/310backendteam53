@@ -1,4 +1,4 @@
-version: "2"
+cversion: "2"
 services:
     310-project:
         build: .
