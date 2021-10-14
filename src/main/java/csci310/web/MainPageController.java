@@ -12,14 +12,13 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/app")
 public class MainPageController
 {
     @Autowired
     UserProposalService service;
 
 
-    @PostMapping("/userproposal")
+    @GetMapping("/userproposal")
     public List<Proposal> getProposals(@RequestBody UserProposalRequest UserProposalRequest)
     {
         List<Proposal> cp = service.getUserProposals(UserProposalRequest.getKey());
