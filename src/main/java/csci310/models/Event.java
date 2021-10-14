@@ -9,7 +9,6 @@ public class Event {
     private Map<Integer,Integer> availabilities;
     private Map<Integer,Integer> ratings;
 
-    public Event() {}
 
     public Event(String url) {
         this.url = url;

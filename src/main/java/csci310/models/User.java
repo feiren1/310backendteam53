@@ -10,15 +10,15 @@ import java.util.List;
 @Document(collection = "users")
 public class User {
     @Id
-    Long id;
+    public Long id;
 
     @Indexed(unique = true)
     private String username;
 
     private String password;
-    List<Integer> received_proposal_ids;
-    List<Integer> hosted_proposal_ids;
-    List<Integer> finalized_proposal_ids;
+    public List<Integer> received_proposal_ids;
+    public List<Integer> hosted_proposal_ids;
+    public List<Integer> finalized_proposal_ids;
 
 
     public User() {}
