@@ -32,30 +32,25 @@ public class UserProposalServiceTest {
 	UserRepository users;
 	
 	@Test
-	public void testTestTest() {
-		assertTrue(true);
-	}
-	
-	@Test
 	public void testgetUserProposals() {
 		
 		List<Proposal> list = new ArrayList<Proposal>();
-		Proposal p1 = new Proposal((long) 1111);
-		Proposal p2 = new Proposal((long) 2222);
-		Proposal p3 = new Proposal((long) 3333);
+		Proposal p1 = new Proposal(1111);
+		Proposal p2 = new Proposal(2222);
+		Proposal p3 = new Proposal(3333);
          
         list.add(p1);
         list.add(p2);
         list.add(p3);
         
         User u1 = new User("username1", "pwd1");
-        u1.addReceivedProposal(p1.getId());
-        u1.addReceivedProposal(p2.getId());
-        u1.addReceivedProposal(p3.getId());
-         
-        when(proposals.findByProposalId(p1.getId())).thenReturn(p1);
-        when(proposals.findByProposalId(p2.getId())).thenReturn(p2);
-        when(proposals.findByProposalId(p3.getId())).thenReturn(p3);
+        u1.addReceivedProposal(1111);
+        u1.addReceivedProposal(2222);
+        u1.addReceivedProposal(3333);
+        
+//        when(proposals.findByUid(p1.getId())).thenReturn(p1);
+//        when(proposals.findByUid(p2.getId())).thenReturn(p2);
+//        when(proposals.findByUid(p3.getId())).thenReturn(p3);
         
         when(users.findByUsername("username1")).thenReturn(u1);
          
