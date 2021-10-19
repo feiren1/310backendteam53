@@ -23,7 +23,7 @@ public class UserProposalService {
         List<Proposal> proplist= new ArrayList<Proposal>();
         for(int i : userproposalids)
         {
-            Proposal p = pr.findByProposalId(i);
+            Proposal p = pr.findByUid(i);
             proplist.add(p);
         }
 

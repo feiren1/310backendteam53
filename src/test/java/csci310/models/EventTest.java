@@ -14,14 +14,14 @@ public class EventTest {
 		Event testEvent1 = new Event("url");
 		assertEquals(testEvent1.getUrl(), "url");
 	}
-	
+
 	@Test
 	public void testgetAvailabilities() {
 		Event testEvent2 = new Event("url");
 		Map<Integer, Integer> testMap2 = new HashMap<Integer,Integer>();
 		assertEquals(testEvent2.getAvailabilities(), testMap2);
 	}
-	
+
 	@Test
 	public void testgetAvailabilities2() {
 		Event testEvent3 = new Event("url");
@@ -30,14 +30,14 @@ public class EventTest {
 		testMap3.put(0, 0);
 		assertEquals(testEvent3.getAvailabilities(), testMap3);
 	}
-	
+
 	@Test
 	public void testgetRatings() {
 		Event testEvent4 = new Event("url");
 		Map<Integer, Integer> testMap4 = new HashMap<Integer,Integer>();
 		assertEquals(testEvent4.getRatings(), testMap4);
 	}
-	
+
 	@Test
 	public void testgetRatings2() {
 		Event testEvent5 = new Event("url");
@@ -46,7 +46,7 @@ public class EventTest {
 		testMap5.put(0, 0);
 		assertEquals(testEvent5.getRatings(), testMap5);
 	}
-	
+
 	@Test
 	public void testaddUserInfo() {
 		Event testEvent6 = new Event("url");
@@ -62,7 +62,7 @@ public class EventTest {
 		assertEquals(testEvent6.getAvailabilities(), testMap6);
 		assertEquals(testEvent6.getRatings(), testMap6);
 	}
-	
+
 	@Test
 	public void testaddUserInfo2() {
 		Event testEvent7 = new Event("url");
@@ -77,13 +77,14 @@ public class EventTest {
 		testMap7.putIfAbsent(1, 1);
 		testMap7.putIfAbsent(2, 2);
 		testMap7.putIfAbsent(3, 3);
-		assertEquals(testEvent7.getAvailabilities(), testMap7);
+		assertEquals(testMap7, testEvent7.getAvailabilities());
+		assertEquals(testMap7, testEvent7.getRatings());
 	}
-	
+
 	@Test
 	public void testtoString() {
 		Event testEvent8 = new Event("url");
 		assertEquals(testEvent8.toString(), "Event[url=url]");
 	}
-	
+
 }

@@ -1,4 +1,4 @@
-package csci310.payload;
+package csci310.payload.requests;
 
 
 public class UserProposalRequest {
