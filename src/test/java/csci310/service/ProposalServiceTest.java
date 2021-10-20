@@ -67,9 +67,6 @@ public class ProposalServiceTest {
 		
 		Proposal resultProposal = service.saveOrUpdateProposal(p);
 		assertEquals(p, resultProposal);
-		
-		Proposal resultProposal2 = service.saveOrUpdateProposal(p);
-		assertEquals(p, resultProposal2);
 	}
 	
 }
