@@ -24,4 +24,9 @@ public class MainPageController
         List<Proposal> cp = service.getUserProposals(UserProposalRequest.getKey());
         return cp;
     }
+    @GetMapping("/test")
+    public String getTest()
+    {
+        return "HELLO WORLD";
+    }
 }

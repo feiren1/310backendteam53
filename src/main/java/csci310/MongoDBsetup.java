@@ -7,9 +7,6 @@ import com.mongodb.ServerAddress;
 import java.util.Arrays;
 
 public class MongoDBsetup {
-    public static void main(String args[]){
-        MongoClient mongo = getMongoClient();
-    }
     protected static MongoClient getMongoClient(){
         //creating credentials
         MongoCredential cred = MongoCredential.createCredential("feire","MyDB","mongoDBpw".toCharArray());
