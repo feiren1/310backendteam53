@@ -54,8 +54,10 @@ public class UserControllerTest {
 		request.setPassword("pwd");
 		request.setConfirmPassword("diffpwd");
 		assertEquals(controller.saveOrUpdateUser(request), new ResponseEntity<>("Passwords do not match", HttpStatus.BAD_REQUEST));
+		assertEquals(controller.saveOrUpdateUser(request).getBody(), "Passwords do not match");
 	}
 	
+	@Test
 	public void testsaveOrUpdateUser1() {
 		UserSignupRequest request = new UserSignupRequest();
 		request.setPassword("pwd");
@@ -66,8 +68,10 @@ public class UserControllerTest {
 		
 		when(users.findByUsername("takenUN")).thenReturn(u);
 		assertEquals(controller.saveOrUpdateUser(request), new ResponseEntity<>("Username has been taken", HttpStatus.UNPROCESSABLE_ENTITY));
+		assertEquals(controller.saveOrUpdateUser(request).getBody(), "Username has been taken");
 	}
 	
+	@Test
 	public void testsaveOrUpdateUser2() {
 		UserSignupRequest request = new UserSignupRequest();
 		request.setPassword("pwd");
@@ -75,10 +79,8 @@ public class UserControllerTest {
 		request.setUsername("untakenUN");
 		
 		when(users.findByUsername("untakenUN")).thenReturn(null);
-		User u1 = new User("untakenUN", "pwd");
-		
-		when(users.saveOrUpdateUser(u1)).thenReturn(u1);
 		assertEquals(controller.saveOrUpdateUser(request), new ResponseEntity<>("User signed up successfully", HttpStatus.OK));
+		assertEquals(controller.saveOrUpdateUser(request).getBody(), "User signed up successfully");
 	}
 	
 //	@Test
