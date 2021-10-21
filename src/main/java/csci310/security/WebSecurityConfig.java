@@ -1,6 +1,5 @@
 package csci310.security;
 
-import csci310.models.UserPrincipal;
 import csci310.service.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -30,8 +29,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthEntryPointJwt unauthorizedHandler;
 
     @Bean
-    public AuthTokenFilter authenticationJwtTokenFilter() {
-        return new AuthTokenFilter();
+    public JwtTokenFilter newJwtTokenFilter() {
+        return new JwtTokenFilter();
     }
 
     @Override
@@ -56,9 +55,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/users/**").permitAll()
-                .antMatchers("/hangouts/**").permitAll()
+                .antMatchers("/hangouts/**").hasAuthority("USER")
                 .anyRequest().authenticated();
 
-        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(newJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }
