@@ -4,11 +4,13 @@ import csci310.models.User;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
+import org.springframework.stereotype.Repository;
 import org.yaml.snakeyaml.events.Event;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public interface UserRepository extends MongoRepository<User, String>{
     //login request
     public User findByUsername(String username);

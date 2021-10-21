@@ -3,9 +3,11 @@ package csci310.service;
 import csci310.models.User;
 import csci310.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserService {
     @Autowired
     private UserRepository userRepository;

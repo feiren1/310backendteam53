@@ -51,7 +51,7 @@ public class ProposalServiceTest {
 		list.add(p1);
 		list.add(p2);
 		
-		when(proposals.findByHost(uid)).thenReturn(list);
+		when(proposals.findByHostId(uid)).thenReturn(list);
 		
 		List<Proposal> result = service.findByHostuid(uid);
         assertEquals(2, result.size());

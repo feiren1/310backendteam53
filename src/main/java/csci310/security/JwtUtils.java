@@ -23,6 +23,7 @@ public class JwtUtils {
     @Value("${secure.app.jwtExpirationMs}")
     private int jwtExpirationMs;
 
+
     public String generateJwtToken(Authentication authentication){
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         return Jwts.builder()
