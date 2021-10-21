@@ -6,4 +6,7 @@ public class UserProposalRequest {
     public String getKey() {
         return Uname;
     }
+    public void setKey(String key) {
+    	Uname = key;
+    }
 }
