@@ -3,39 +3,37 @@ package csci310.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.*;
 
 import csci310.models.User;
-import csci310.payload.requests.UserLoginRequest;
 import csci310.payload.requests.UserSignupRequest;
-import csci310.payload.responses.JwtResponse;
-import csci310.security.JwtUtils;
-import csci310.repositories.UserRepository;
 import csci310.service.UserService;
-import io.cucumber.java.en.When;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserControllerTest {
 
 	@InjectMocks
-	UserController controller;
+	UserController userController;
 	
 	@Mock
-	UserService users;
+	UserService userService;
+
+	@Before
+	public void init() {
+		MockitoAnnotations.initMocks(this);
+	}
 	
 	@Test
 	public void testsearchByUsername() {
@@ -43,18 +41,34 @@ public class UserControllerTest {
 		User u = new User("un", "pwd");
 		uList.add(u);
 		
-		when(users.searchByUsername("un")).thenReturn(uList);
-		List<User> result = controller.searchByUsername("un");
+		when(userService.searchByUsername("un")).thenReturn(uList);
+		List<User> result = userController.searchByUsername("un");
+		verify(userService).searchByUsername("un");
+
 		assertEquals(result, uList);
 	}
 	
 	@Test
 	public void testsaveOrUpdateUser() {
 		UserSignupRequest request = new UserSignupRequest();
-		request.setPassword("pwd");
-		request.setConfirmPassword("diffpwd");
-		assertEquals(controller.saveOrUpdateUser(request), new ResponseEntity<>("Passwords do not match", HttpStatus.BAD_REQUEST));
-		assertEquals(controller.saveOrUpdateUser(request).getBody(), "Passwords do not match");
+		request.setUsername("user");
+		request.setPassword("pw");
+		request.setConfirmPassword("diffpw");
+		assertEquals(userController.saveOrUpdateUser(request), new ResponseEntity<>("Passwords do not match", HttpStatus.BAD_REQUEST));
+
+		//if user already exists in database
+		/*request.setConfirmPassword("pw");
+		User user = new User("user","pw");
+		when(userService.findByUsername("user")).thenReturn(user);
+		assertEquals(userController.saveOrUpdateUser(request), new ResponseEntity<>("Username has been taken", HttpStatus.UNPROCESSABLE_ENTITY));
+		verify(userService).findByUsername("user");
+
+		//if user does not exist in database
+		when(userService.findByUsername("user")).thenReturn(null);
+		when(userService.saveOrUpdateUser(user)).thenReturn(user);
+		assertEquals(userController.saveOrUpdateUser(request), new ResponseEntity<>("User signed up successfully", HttpStatus.OK));
+		verify(userService).findByUsername("user");
+		verify(userService).saveOrUpdateUser(user);*/
 	}
 	
 	@Test
@@ -66,9 +80,9 @@ public class UserControllerTest {
 		
 		User u = new User("takenUN", "pwd");
 		
-		when(users.findByUsername("takenUN")).thenReturn(u);
-		assertEquals(controller.saveOrUpdateUser(request), new ResponseEntity<>("Username has been taken", HttpStatus.UNPROCESSABLE_ENTITY));
-		assertEquals(controller.saveOrUpdateUser(request).getBody(), "Username has been taken");
+		when(userService.findByUsername("takenUN")).thenReturn(u);
+		assertEquals(userController.saveOrUpdateUser(request), new ResponseEntity<>("Username has been taken", HttpStatus.UNPROCESSABLE_ENTITY));
+		verify(userService).findByUsername("takenUN");
 	}
 	
 	@Test
@@ -77,10 +91,12 @@ public class UserControllerTest {
 		request.setPassword("pwd");
 		request.setConfirmPassword("pwd");
 		request.setUsername("untakenUN");
-		
-		when(users.findByUsername("untakenUN")).thenReturn(null);
-		assertEquals(controller.saveOrUpdateUser(request), new ResponseEntity<>("User signed up successfully", HttpStatus.OK));
-		assertEquals(controller.saveOrUpdateUser(request).getBody(), "User signed up successfully");
+
+		User u = new User("takenUN", "pwd");
+
+		when(userService.findByUsername("untakenUN")).thenReturn(null);
+		assertEquals(userController.saveOrUpdateUser(request), new ResponseEntity<>("User signed up successfully", HttpStatus.OK));
+		verify(userService).findByUsername("untakenUN");
 	}
 	
 //	@Test
