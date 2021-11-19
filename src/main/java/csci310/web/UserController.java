@@ -52,7 +52,7 @@ public class UserController {
     }
 
     //login
-    /*@PostMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<?> loginAuthentication(@RequestBody UserLoginRequest userLoginRequest){
         User findUser = userService.findByUsername(userLoginRequest.getUsername());
         if(findUser == null){
@@ -64,6 +64,6 @@ public class UserController {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userLoginRequest.getUsername(),userLoginRequest.getPassword()));
         String jwt = jwtUtils.generateJwtToken(authentication);
         return new ResponseEntity<>(new JwtResponse("User logged in successfully", jwt), HttpStatus.OK);
-    }*/
+    }
 
 }

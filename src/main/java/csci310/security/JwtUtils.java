@@ -18,11 +18,18 @@ public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
     @Value("${secure.app.jwtSecret}")
-    private String jwtSecret;
+    protected String jwtSecret = "secretKey";
 
     @Value("${secure.app.jwtExpirationMs}")
-    private int jwtExpirationMs;
+    protected int jwtExpirationMs = 1800000;
 
+    public String getJwtSecret(){
+        return jwtSecret;
+    }
+
+    public int getJwtExpirationMs(){
+        return jwtExpirationMs;
+    }
 
     public String generateJwtToken(Authentication authentication){
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
@@ -43,7 +50,6 @@ public class JwtUtils {
         if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
             return headerAuth.substring(7, headerAuth.length());
         }
-
         return null;
     }
 
