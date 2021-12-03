@@ -33,20 +33,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new JwtTokenFilter();
     }
 
+    public boolean configureOverridden;
+
+    public WebSecurityConfig(){
+        unauthorizedHandler = new AuthEntryPointJwt();
+        configureOverridden = false;
+    }
+
     @Override
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
+        configureOverridden = true;
     }
 
-    @Bean
+    /*@Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
-    }
+    }*/
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        PasswordEncoder retval = new BCryptPasswordEncoder();
+        return retval;
     }
 
     @Override

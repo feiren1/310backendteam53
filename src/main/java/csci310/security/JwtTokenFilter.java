@@ -26,9 +26,6 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     @Autowired
     private UserDetailService userDetailService;
 
-    @Autowired
-    private UserService userService;
-
     private static final Logger logger = LoggerFactory.getLogger(JwtTokenFilter.class);
 
     @Override
@@ -36,7 +33,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         try {
             String jwt = jwtUtils.parseJwt(request);
-            if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
+            if (jwtUtils.validateJwtToken(jwt)) {
                 SecurityContextHolder.getContext().setAuthentication(getAuthentication(jwt));
             }
         } catch (Exception e) {

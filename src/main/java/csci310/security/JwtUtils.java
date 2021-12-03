@@ -17,10 +17,10 @@ import java.util.Date;
 public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
-    @Value("${secure.app.jwtSecret}")
+    //@Value("${secure.app.jwtSecret}")
     protected String jwtSecret = "secretKey";
 
-    @Value("${secure.app.jwtExpirationMs}")
+    //@Value("${secure.app.jwtExpirationMs}")
     protected int jwtExpirationMs = 1800000;
 
     public String getJwtSecret(){
